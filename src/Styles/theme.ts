@@ -8,6 +8,7 @@ export const theme: DefaultTheme = {
     gray2: "#CCC",
     gray4: "#7F7F7F",
     darkGray: "#595959",
+    gradientGray: "#333",
     white: "#FFF",
   },
   fontSize: {

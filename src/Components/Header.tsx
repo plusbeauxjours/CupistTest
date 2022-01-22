@@ -8,7 +8,7 @@ interface IMatched {
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: fixed;
   width: 100%;
@@ -16,6 +16,14 @@ const Nav = styled.nav`
   background-color: white;
   font-size: 14px;
   padding: 12px 12px 12px 8px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
 `;
 
 const Col = styled.div`
@@ -54,24 +62,26 @@ const Header: React.FC<IProps> = () => {
   const mainMatch = useRouteMatch("/");
   return (
     <Nav>
-      <Col>
-        <Items>
-          <Link to="/">
-            <Item isMatched={mainMatch?.isExact}>
-              <Icon src={require("../assets/icon/main/logo.png")} />
-            </Item>
+      <Row>
+        <Col>
+          <Items>
+            <Link to="/">
+              <Item isMatched={mainMatch?.isExact}>
+                <Icon src={require("../assets/icon/main/logo.png")} />
+              </Item>
+            </Link>
+            <Item>근처</Item>
+            <Item>라이브</Item>
+          </Items>
+        </Col>
+        <Col>
+          <Link to="/profile">
+            <ProfileIconContainer>
+              <Icon src={require("../assets/icon/main/setting.png")} />
+            </ProfileIconContainer>
           </Link>
-          <Item>근처</Item>
-          <Item>라이브</Item>
-        </Items>
-      </Col>
-      <Col>
-        <Link to="/profile">
-          <ProfileIconContainer>
-            <Icon src={require("../assets/icon/main/setting.png")} />
-          </ProfileIconContainer>
-        </Link>
-      </Col>
+        </Col>
+      </Row>
     </Nav>
   );
 };
