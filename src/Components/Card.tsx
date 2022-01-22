@@ -12,8 +12,8 @@ const Container = styled.div`
   height: 140%;
   border-radius: 10px;
   background-color: tomato;
-  padding: 16px;
   margin-bottom: 12px;
+  overflow: hidden;
 `;
 
 const Img = styled.img`
@@ -24,13 +24,22 @@ const Img = styled.img`
 const Footer = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 16px;
   padding-top: 20px;
+  background-color: ${(props) => props.theme.colors.gradientGray};
 `;
 
 const Box = styled.div`
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
+  background: ${(props) =>
+    `linear-gradient(
+        0deg,
+        ${props.theme.colors.gradientGray} 0%,
+        transparent 100%
+      )`};
 `;
 
 const RecommendationBox = styled.div`
@@ -101,35 +110,37 @@ const LikeText = styled(WhiteText)`
 
 const Card: React.FC<IProps> = ({ data }) => {
   return (
-    <Container>
-      <Img src={require("../assets/icon/nav/home.png")} />
-      <Box>
-        <RecommendationBox>
-          <RecommendationText>오늘의 추천</RecommendationText>
-        </RecommendationBox>
-        <Name>
-          이름, 나이
-          <InfoIcon src={require("../assets/icon/main/info.png")} />
-        </Name>
+    <>
+      <Container>
+        <Img src={require("../assets/icon/nav/home.png")} />
+        <Box>
+          <RecommendationBox>
+            <RecommendationText>오늘의 추천</RecommendationText>
+          </RecommendationBox>
+          <Name>
+            이름, 나이
+            <InfoIcon src={require("../assets/icon/main/info.png")} />
+          </Name>
 
-        {data?.introduction ? (
-          <Text>{data?.introduction}</Text>
-        ) : (
-          <>
-            <Text>그래픽 디자이너 ∙ 2.9km</Text>
-            <Tall>키 cm</Tall>
-          </>
-        )}
-      </Box>
-      <Footer>
-        <UnlikeIconContainer>
-          <Icon src={require("../assets/icon/main/delete.png")} />
-        </UnlikeIconContainer>
-        <LikeIconContainer>
-          <LikeText>좋아요</LikeText>
-        </LikeIconContainer>
-      </Footer>
-    </Container>
+          {data?.introduction ? (
+            <Text>{data?.introduction}</Text>
+          ) : (
+            <>
+              <Text>그래픽 디자이너 ∙ 2.9km</Text>
+              <Tall>키 cm</Tall>
+            </>
+          )}
+        </Box>
+        <Footer>
+          <UnlikeIconContainer>
+            <Icon src={require("../assets/icon/main/delete.png")} />
+          </UnlikeIconContainer>
+          <LikeIconContainer>
+            <LikeText>좋아요</LikeText>
+          </LikeIconContainer>
+        </Footer>
+      </Container>
+    </>
   );
 };
 
