@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IIntroduction } from "../types/introductionTypes";
 
 interface IProps {
-  data?: IIntroduction;
+  data?: any;
 }
 
 const Container = styled.div`
@@ -84,7 +84,7 @@ const InfoIcon = styled(Icon)`
   margin-left: 4px;
 `;
 
-const FooterIconContainer = styled.div`
+const FooterIconContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

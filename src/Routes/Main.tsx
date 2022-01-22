@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Card from "../components/Card";
+import CustomIntroductionBox from "../components/CustomIntroductionBox";
 
 interface IProps {}
 
@@ -18,11 +19,12 @@ const Main: React.FC<IProps> = () => {
   return (
     <Wrapper>
       <Card data={null} />
+      {/* <Card data={null} />
+      <Card data={null} /> */}
+      <CustomIntroductionBox />
+      {/* <Card data={null} />
       <Card data={null} />
-      <Card data={null} />
-      <Card data={null} />
-      <Card data={null} />
-      <Card data={null} />
+      <Card data={null} /> */}
     </Wrapper>
   );
 };

@@ -34,6 +34,9 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
 }
+button{
+  border-width: 0
+}
 menu, ol, ul {
   list-style: none;
 }
@@ -57,7 +60,9 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color:black;
   line-height: 1.2;
-  
+}
+p{
+  color: ${(props) => props.theme.colors.black};
 }
 a {
   text-decoration:none;
