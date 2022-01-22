@@ -1,14 +1,26 @@
 import React from "react";
-import Header from "../Components/Header";
-import BottomNavigator from "../Components/BottomNavigator";
+import styled from "styled-components";
+
+import Header from "../components/Header";
+import BottomNavigator from "../components/BottomNavigator";
+import Card from "../components/Card";
 
 interface IProps {}
+
+const Container = styled.div``;
 
 const Main: React.FC<IProps> = () => {
   return (
     <>
       <Header />
-      <div />
+      <Container>
+        <Card data={null} />
+        <Card data={null} />
+        <Card data={null} />
+        <Card data={null} />
+        <Card data={null} />
+        <Card data={null} />
+      </Container>
       <BottomNavigator />
     </>
   );

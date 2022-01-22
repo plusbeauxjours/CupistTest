@@ -1,0 +1,93 @@
+{
+  "data": {
+    "id": 0,
+    "name": "개발자 A",
+    "pictures": ["/profile/01.png", "/profile/02.png"],
+    "gender": "F",
+    "birthday": "1990-01-01",
+    "location": "서울특별시 강남구",
+    "introduction": "소개글이 지워지면 힌트가 나타나야 합니다",
+    "height": 170,
+    "body_type": "body_type_00",
+    "company": "큐피스트",
+    "job": "개발자",
+    "education": null,
+    "school": null
+  },
+  "meta": {
+    "genders": [
+      {
+        "key": "M",
+        "name": "남성"
+      },
+      {
+        "key": "F",
+        "name": "여성"
+      }
+    ],
+    "body_types": [
+      {
+        "key": "body_type_0",
+        "name": "상관없음"
+      },
+      {
+        "key": "body_type_00",
+        "name": "마른"
+      },
+      {
+        "key": "body_type_001",
+        "name": "슬림 근육"
+      },
+      {
+        "key": "body_type_01",
+        "name": "보통"
+      },
+      {
+        "key": "body_type_011",
+        "name": "스팸"
+      },
+      {
+        "key": "body_type_02",
+        "name": "근육질"
+      },
+      {
+        "key": "body_type_03",
+        "name": "통통"
+      },
+      {
+        "key": "body_type_031",
+        "name": "우람"
+      }
+    ],
+    "educations": [
+      {
+        "key": "education_00",
+        "name": "고등학교"
+      },
+      {
+        "key": "education_01",
+        "name": "전문대"
+      },
+      {
+        "key": "education_02",
+        "name": "대학교"
+      },
+      {
+        "key": "education_03",
+        "name": "석사"
+      },
+      {
+        "key": "education_04",
+        "name": "박사"
+      },
+      {
+        "key": "education_05",
+        "name": "기타"
+      }
+    ],
+    "height_range": {
+      "min": 120,
+      "max": 220
+    }
+  }
+}

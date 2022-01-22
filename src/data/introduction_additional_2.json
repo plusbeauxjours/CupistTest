@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": 5,
+      "name": "디자이너 C",
+      "pictures": [
+        "/profile/01.png",
+        "/profile/02.png"
+      ],
+      "age": 21,
+      "location": "서울특별시 강남구",
+      "introduction": "소개글이 있으면 소개글을 노출 시킵니다",
+      "distance": 1300,
+      "height": 167,
+      "company": "큐피스트",
+      "job": "디자이너"
+    },
+    {
+      "id": 6,
+      "name": "기획자 B",
+      "pictures": [
+        "/profile/06.png",
+        "/profile/01.png",
+        "/profile/00.png"
+      ],
+      "age": 22,
+      "location": "서울특별시 강남구",
+      "introduction": null,
+      "distance": 900,
+      "height": 163,
+      "company": "큐피스트",
+      "job": "기획자"
+    }
+  ],
+  "meta": {
+    "next": null
+  }
+}
