@@ -1,20 +1,36 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "./src",
+    "rootDir": ".",
+    /* Additional Options 0315*/
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "importHelpers": true,
+    "noUnusedLocals": false,
+
+    /* Basic Options */
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "lib": ["dom", "ES6", "es2019"],
+    "jsx": "react",
+    // "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": ["src"]
+    "resolveJsonModule": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": false,
+    "alwaysStrict": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
 }

@@ -1,5 +1,14 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
+import { callApi } from "../data/api";
+import ProfilePhotoBox from "../components/ProfilePhotoBox";
+import {
+  BodyTypes,
+  Genders,
+  Educations,
+  IProfileData,
+} from "../types/profileTypes";
 
 interface IProps {}
 
@@ -93,8 +102,9 @@ const Icon = styled.img`
 const Form = styled.form``;
 
 const Profile: React.FC<IProps> = () => {
-  const [tallModalOpen, setTallModalOpen] = useState<boolean>(false);
-  const [tall, setTall] = useState<string>("");
+  const [data, setData] = useState<IProfileData>(null);
+  const [heightModalOpen, setHeightModalOpen] = useState<boolean>(false);
+  const [height, setHeight] = useState<string>("");
 
   const [bodyTypeModalOpen, setBodyTypeModalOpen] = useState<boolean>(false);
   const [bodyType, setBodyType] = useState<string>("");
@@ -107,9 +117,27 @@ const Profile: React.FC<IProps> = () => {
   const [school, setSchool] = useState<string>("");
   const [introduction, setIntroduction] = useState<string>("");
 
+  const getData = async () => {
+    const { data } = await callApi("profile");
+    setData(data);
+
+    setHeight(data?.data.height || "");
+    setBodyType(data?.data.body_type || "");
+    setEducation(data?.data.education || "");
+    setCompany(data?.data.company || "");
+    setJob(data?.data.job || "");
+    setSchool(data?.data.school || "");
+    setIntroduction(data?.data.introduction || "");
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <Form>
       <Wrapper>
+        <ProfilePhotoBox data={data?.data} />
         <Row>
           <GrayText>
             다양한 매력을 보여줄 수 있는 사진을 올려주세요
@@ -125,34 +153,34 @@ const Profile: React.FC<IProps> = () => {
           <Row>
             <FrontText>닉네임</FrontText>
             <BackText>
-              라로랑
+              {data?.data.name}
               <Icon src={require("../assets/icon/profile_edit/lock.png")} />
             </BackText>
           </Row>
           <Row>
             <FrontText>성별</FrontText>
-            <BackText disabled>남성</BackText>
+            <BackText disabled>{Genders[data?.data.gender]}</BackText>
           </Row>
           <Row>
             <FrontText>생일</FrontText>
-            <BackText>남성</BackText>
+            <BackText>{data?.data.birthday}</BackText>
           </Row>
           <Row>
             <FrontText>위치</FrontText>
-            <BackText>남성</BackText>
+            <BackText>{data?.data.location}</BackText>
           </Row>
         </Box>
         <Box>
           <Row>
             <FrontText>키</FrontText>
-            <BackText as="button" onClick={() => setTallModalOpen(true)}>
-              남성
+            <BackText as="button" onClick={() => setHeightModalOpen(true)}>
+              {height}
             </BackText>
           </Row>
           <Row>
             <FrontText>체형</FrontText>
             <BackText as="button" onClick={() => setBodyTypeModalOpen(true)}>
-              남성
+              {BodyTypes[bodyType]}
             </BackText>
           </Row>
         </Box>
@@ -177,7 +205,7 @@ const Profile: React.FC<IProps> = () => {
               type="text"
               placeholder="입력해주세요"
               value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              onChange={(e) => setCompany(e.currentTarget.value)}
             />
           </Row>
           <Row>
@@ -187,13 +215,13 @@ const Profile: React.FC<IProps> = () => {
               type="text"
               placeholder="입력해주세요"
               value={job}
-              onChange={(e) => setJob(e.target.value)}
+              onChange={(e) => setJob(e.currentTarget.value)}
             />
           </Row>
           <Row>
             <FrontText>학력</FrontText>
             <BackText as="button" onClick={() => setEducationModalOpen(true)}>
-              남성
+              {Educations[education]}
             </BackText>
           </Row>
           <Row>
@@ -203,7 +231,7 @@ const Profile: React.FC<IProps> = () => {
               type="text"
               placeholder="입력해주세요"
               value={school}
-              onChange={(e) => setSchool(e.target.value)}
+              onChange={(e) => setSchool(e.currentTarget.value)}
             />
           </Row>
         </Box>

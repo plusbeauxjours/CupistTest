@@ -1,28 +1,30 @@
 {
-  "data": [
-    {
-      "id": 1,
-      "name": "디자이너 A",
-      "pictures": ["/profile/60.png", "/profile/61.png", "/profile/62.png"],
-      "age": 30,
-      "location": "서울특별시 강남구",
-      "introduction": "소개글이 있으면 소개글을 노출 시킵니다",
-      "distance": 1600,
-      "height": 160,
-      "company": "큐피스트",
-      "job": "디자이너"
-    },
-    {
-      "id": 2,
-      "name": "개발자 B",
-      "pictures": ["/profile/70.png", "/profile/71.png", "/profile/72.png"],
-      "age": 27,
-      "location": "서울특별시 강남구",
-      "introduction": null,
-      "distance": 2700,
-      "height": 163,
-      "company": "큐피스트",
-      "job": "개발자"
-    }
-  ]
+  "introduction": {
+    "data": [
+      {
+        "id": 1,
+        "name": "디자이너 A",
+        "pictures": ["/profile/60.png", "/profile/61.png", "/profile/62.png"],
+        "age": 30,
+        "location": "서울특별시 강남구",
+        "introduction": "소개글이 있으면 소개글을 노출 시킵니다",
+        "distance": 1600,
+        "height": 160,
+        "company": "큐피스트",
+        "job": "디자이너"
+      },
+      {
+        "id": 2,
+        "name": "개발자 B",
+        "pictures": ["/profile/70.png", "/profile/71.png", "/profile/72.png"],
+        "age": 27,
+        "location": "서울특별시 강남구",
+        "introduction": null,
+        "distance": 2700,
+        "height": 163,
+        "company": "큐피스트",
+        "job": "개발자"
+      }
+    ]
+  }
 }

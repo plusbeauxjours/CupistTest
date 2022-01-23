@@ -1,16 +1,20 @@
+export interface IProfileData {
+  data: IProfile;
+  meta: IProfileMeta;
+}
 export interface IProfile {
   id: number;
   name: string;
   pictures: string[];
-  gender?: EGenders;
+  gender?: string;
   birthday?: string;
   location?: string;
   introduction?: string;
   height?: number;
-  body_type?: EBodyTypes;
+  body_type?: string;
   company?: string;
   job?: string;
-  education?: EEducations;
+  education?: string;
   school?: string;
 }
 
@@ -41,27 +45,27 @@ export interface IHeight {
   max: number;
 }
 
-export enum EGenders {
-  M = "남성",
-  F = "여성",
-}
+export const Genders = {
+  M: "남성",
+  F: "여성",
+};
 
-export enum EBodyTypes {
-  body_type_0 = "상관없음",
-  body_type_00 = "마른",
-  body_type_001 = "슬림 근육",
-  body_type_01 = "보통",
-  body_type_011 = "스팸",
-  body_type_02 = "근육질",
-  body_type_03 = "통통",
-  body_type_031 = "우람",
-}
+export const BodyTypes = {
+  body_type_0: "상관없음",
+  body_type_00: "마른",
+  body_type_001: "슬림 근육",
+  body_type_01: "보통",
+  body_type_011: "스팸",
+  body_type_02: "근육질",
+  body_type_03: "통통",
+  body_type_031: "우람",
+};
 
-export enum EEducations {
-  education_00 = "고등학교",
-  education_01 = "전문대",
-  education_02 = "대학교",
-  education_03 = "석사",
-  education_04 = "박사",
-  education_05 = "기타",
-}
+export const Educations = {
+  education_00: "고등학교",
+  education_01: "전문대",
+  education_02: "대학교",
+  education_03: "석사",
+  education_04: "박사",
+  education_05: "기타",
+};
