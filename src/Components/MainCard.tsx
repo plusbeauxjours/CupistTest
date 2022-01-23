@@ -108,7 +108,7 @@ const LikeText = styled(WhiteText)`
   font-size: ${(props) => props.theme.fontSize.M};
 `;
 
-const Card: React.FC<IProps> = ({ data }) => {
+const MainCard: React.FC<IProps> = ({ data }) => {
   return (
     <>
       <Container>
@@ -144,4 +144,4 @@ const Card: React.FC<IProps> = ({ data }) => {
   );
 };
 
-export default Card;
+export default MainCard;

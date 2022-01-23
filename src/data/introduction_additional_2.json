@@ -3,10 +3,7 @@
     {
       "id": 5,
       "name": "디자이너 C",
-      "pictures": [
-        "/profile/01.png",
-        "/profile/02.png"
-      ],
+      "pictures": ["/profile/00.png", "/profile/01.png", "/profile/02.png"],
       "age": 21,
       "location": "서울특별시 강남구",
       "introduction": "소개글이 있으면 소개글을 노출 시킵니다",
@@ -18,11 +15,7 @@
     {
       "id": 6,
       "name": "기획자 B",
-      "pictures": [
-        "/profile/06.png",
-        "/profile/01.png",
-        "/profile/00.png"
-      ],
+      "pictures": ["/profile/10.png", "/profile/11.png", "/profile/12.png"],
       "age": 22,
       "location": "서울특별시 강남구",
       "introduction": null,

@@ -80,7 +80,7 @@ const BarBtnText = styled.p`
   font-size: ${(props) => props.theme.fontSize.M};
 `;
 
-const CustomIntroductionBox: React.FC<IProps> = () => {
+const MainCustomIntroductionBox: React.FC<IProps> = () => {
   const customArr = [
     {
       text: "글램 추천",
@@ -130,4 +130,4 @@ const CustomIntroductionBox: React.FC<IProps> = () => {
   );
 };
 
-export default CustomIntroductionBox;
+export default MainCustomIntroductionBox;

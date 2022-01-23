@@ -58,7 +58,7 @@ const ProfileIconContainer = styled(Item)`
 
 const Icon = styled.img``;
 
-const Header: React.FC<IProps> = () => {
+const MainHeader: React.FC<IProps> = () => {
   const mainMatch = useRouteMatch("/");
   return (
     <Nav>
@@ -86,4 +86,4 @@ const Header: React.FC<IProps> = () => {
   );
 };
 
-export default Header;
+export default MainHeader;

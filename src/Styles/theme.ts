@@ -17,6 +17,7 @@ export const theme: DefaultTheme = {
     L: "16px",
     XL: "20px",
     XXL: "24px",
+    HeaderTitle: "17px",
   },
   fontWeight: {
     light: "100",

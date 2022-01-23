@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BottomNavigator from "./components/BottomNavigator";
-import Header from "./components/Header";
+import MainHeader from "./components/MainHeader";
+import ProfileHeader from "./components/ProfileHeader";
 import Main from "./routes/Main";
 import Profile from "./routes/Profile";
 
@@ -8,13 +9,14 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/profile">
+          <ProfileHeader />
+          <Profile />
+        </Route>
         <Route path="/">
-          <Header />
+          <MainHeader />
           <Main />
           <BottomNavigator />
-        </Route>
-        <Route path="/profile">
-          <Profile />
         </Route>
       </Switch>
     </Router>

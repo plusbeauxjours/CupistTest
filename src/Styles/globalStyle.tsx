@@ -35,7 +35,16 @@ body {
   line-height: 1;
 }
 button{
-  border-width: 0
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+}
+input{
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
 }
 menu, ol, ul {
   list-style: none;
@@ -57,7 +66,7 @@ table {
 }
 body {
   font-weight: 300;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Arial';
   color:black;
   line-height: 1.2;
 }

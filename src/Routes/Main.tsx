@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Card from "../components/Card";
-import CustomIntroductionBox from "../components/CustomIntroductionBox";
+import MainCard from "../components/MainCard";
+import CustomIntroductionBox from "../components/MainCustomIntroductionBox";
 
 interface IProps {}
 
@@ -18,13 +18,13 @@ const Wrapper = styled.div`
 const Main: React.FC<IProps> = () => {
   return (
     <Wrapper>
-      <Card data={null} />
-      {/* <Card data={null} />
-      <Card data={null} /> */}
+      <MainCard data={null} />
+      {/* <MainCard data={null} />
+      <MainCard data={null} /> */}
       <CustomIntroductionBox />
-      {/* <Card data={null} />
-      <Card data={null} />
-      <Card data={null} /> */}
+      {/* <MainCard data={null} />
+      <MainCard data={null} />
+      <MainCard data={null} /> */}
     </Wrapper>
   );
 };

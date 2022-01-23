@@ -18,6 +18,7 @@ declare module "styled-components" {
       L: string;
       XL: string;
       XXL: string;
+      HeaderTitle: string;
     };
     fontWeight: {
       light: string;
