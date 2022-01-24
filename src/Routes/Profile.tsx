@@ -22,7 +22,6 @@ interface ITheme {
 
 const Wrapper = styled.div`
   display: flex;
-  position: fixed;
   flex-direction: column;
   align-items: center;
   margin-top: 80px;

@@ -4,6 +4,7 @@ import { IIntroduction } from "../types/introductionTypes";
 
 interface IProps {
   data?: any;
+  today?: boolean;
 }
 
 const Container = styled.div`
@@ -108,17 +109,20 @@ const LikeText = styled(WhiteText)`
   font-size: ${(props) => props.theme.fontSize.M};
 `;
 
-const MainCard: React.FC<IProps> = ({ data }) => {
+const MainCard: React.FC<IProps> = ({ data, today }) => {
+  console.log(data);
   return (
     <>
       <Container>
         <Img src={require("../assets/icon/nav/home.png")} />
         <Box>
-          <RecommendationBox>
-            <RecommendationText>오늘의 추천</RecommendationText>
-          </RecommendationBox>
+          {today && (
+            <RecommendationBox>
+              <RecommendationText>오늘의 추천</RecommendationText>
+            </RecommendationBox>
+          )}
           <Name>
-            이름, 나이
+            {data.name}, {data.age}
             <InfoIcon src={require("../assets/icon/main/info.png")} />
           </Name>
 
@@ -126,8 +130,10 @@ const MainCard: React.FC<IProps> = ({ data }) => {
             <Text>{data?.introduction}</Text>
           ) : (
             <>
-              <Text>그래픽 디자이너 ∙ 2.9km</Text>
-              <Tall>키 cm</Tall>
+              <Text>
+                {data.job} ∙ {data.distance * 0.001}km
+              </Text>
+              <Tall>{data.height} cm</Tall>
             </>
           )}
         </Box>
