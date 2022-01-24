@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import BottomNavigator from "./components/BottomNavigator";
-import MainHeader from "./components/MainHeader";
-import ProfileHeader from "./components/ProfileHeader";
-import Main from "./routes/Main";
-import Profile from "./routes/Profile";
+import BottomNavigator from "components/BottomNavigator";
+import MainHeader from "components/MainHeader";
+import ProfileHeader from "components/ProfileHeader";
+import Main from "routes/Main";
+import Profile from "routes/Profile";
 
 function App() {
   return (

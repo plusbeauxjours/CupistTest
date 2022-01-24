@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-interface IProps {}
+interface IProps {
+  setIsIntroductionCustomDataVisible: (
+    isIntroductionCustomDataVisible: boolean
+  ) => void;
+}
 
 const Container = styled.div`
   width: 100%;
@@ -80,7 +84,9 @@ const BarBtnText = styled.p`
   font-size: ${(props) => props.theme.fontSize.M};
 `;
 
-const MainCustomIntroductionBox: React.FC<IProps> = () => {
+const MainCustomIntroductionBox: React.FC<IProps> = ({
+  setIsIntroductionCustomDataVisible,
+}) => {
   const customArr = [
     {
       text: "글램 추천",
@@ -118,12 +124,12 @@ const MainCustomIntroductionBox: React.FC<IProps> = () => {
               />
             )}
           </Col>
-          <Btn>
+          <Btn onClick={() => setIsIntroductionCustomDataVisible(true)}>
             <BtnText>선택</BtnText>
           </Btn>
         </Row>
       ))}
-      <BarBtn onClick={() => console.log("btn")}>
+      <BarBtn onClick={() => console.log("24개 항목 모두 보기")}>
         <BarBtnText>24개 항목 모두 보기</BarBtnText>
       </BarBtn>
     </Container>

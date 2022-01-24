@@ -12,6 +12,7 @@ import {
 import ProfileHeightModal from "components/ProfileHeightModal";
 import ProfileBodyTypeModal from "components/ProfileBodyTypeModal";
 import ProfileEducationModal from "components/ProfileEducationModal";
+import Loading from "components/Loading";
 
 interface IProps {}
 
@@ -113,7 +114,21 @@ const Icon = styled.img`
 
 const Form = styled.form``;
 
+const IconContainer = styled.div`
+  flex: 1;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  top: 80px;
+  padding-bottom: 200px;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Profile: React.FC<IProps> = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [data, setData] = useState<IProfileData>(null);
   const [heightModalOpen, setHeightModalOpen] = useState<boolean>(false);
   const [height, setHeight] = useState<number>(0);
@@ -130,174 +145,189 @@ const Profile: React.FC<IProps> = () => {
   const [introduction, setIntroduction] = useState<string>("");
 
   const getData = async () => {
-    const { data } = await callApi("profile");
-    setData(data);
+    try {
+      setLoading(true);
+      const { data } = await callApi("profile");
+      setData(data);
 
-    setHeight(data?.data.height || "");
-    setBodyType(data?.data.body_type || "");
-    setEducation(data?.data.education || "");
-    setCompany(data?.data.company || "");
-    setJob(data?.data.job || "");
-    setSchool(data?.data.school || "");
-    setIntroduction(data?.data.introduction || "");
+      setHeight(data?.data.height || "");
+      setBodyType(data?.data.body_type || "");
+      setEducation(data?.data.education || "");
+      setCompany(data?.data.company || "");
+      setJob(data?.data.job || "");
+      setSchool(data?.data.school || "");
+      setIntroduction(data?.data.introduction || "");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  return (
-    <Form>
-      <Wrapper>
-        <ProfilePhotoBox data={data?.data} />
-        <Row>
-          <GrayText>
-            다양한 매력을 보여줄 수 있는 사진을 올려주세요
-            <GrayTextBold
-              as="button"
-              onClick={() => console.log("더 알아보기")}
-            >
-              더 알아보기
-            </GrayTextBold>
-          </GrayText>
-        </Row>
-        <Box>
+  if (loading) {
+    return (
+      <IconContainer>
+        <Loading />
+      </IconContainer>
+    );
+  } else {
+    return (
+      <Form>
+        <Wrapper>
+          <ProfilePhotoBox data={data?.data} />
           <Row>
-            <FrontText>닉네임</FrontText>
-            <BackText>
-              {data?.data.name}
-              <Icon src={require("../assets/icon/profile_edit/lock.png")} />
-            </BackText>
+            <GrayText>
+              다양한 매력을 보여줄 수 있는 사진을 올려주세요
+              <GrayTextBold
+                as="button"
+                onClick={() => console.log("더 알아보기")}
+              >
+                더 알아보기
+              </GrayTextBold>
+            </GrayText>
           </Row>
-          <Row>
-            <FrontText>성별</FrontText>
-            <BackText disabled>{Genders[data?.data.gender]}</BackText>
-          </Row>
-          <Row>
-            <FrontText>생일</FrontText>
-            <BackText>{data?.data.birthday}</BackText>
-          </Row>
-          <Row>
-            <FrontText>위치</FrontText>
-            <BackText>{data?.data.location}</BackText>
-          </Row>
-        </Box>
-        <Box>
-          <Row>
-            <FrontText>키</FrontText>
-            <BackText
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setHeightModalOpen(true);
-              }}
-              placeHolder={!bodyType}
-            >
-              {height || "선택해주세요"}
-            </BackText>
-          </Row>
-          <Row>
-            <FrontText>체형</FrontText>
-            <BackText
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setBodyTypeModalOpen(true);
-              }}
-              placeHolder={!bodyType}
-            >
-              {BodyTypes[bodyType] || "선택해주세요"}
-            </BackText>
-          </Row>
-        </Box>
-        <Box>
-          <IntroductionTitle>소개</IntroductionTitle>
-          <Input
-            type="text"
-            placeholder="회원님의 매력을 간단하게 소개해주세요"
-            multiple
-            value={introduction}
-            onChange={(e) => setIntroduction(e.target.value)}
-          />
-          <GrayText>
-            SNS 아이디 등 연락처 입력 시 서비스 이용 제한됩니다
-          </GrayText>
-        </Box>
-        <Box>
-          <Row>
-            <FrontText>직장</FrontText>
-            <BackText
-              as="input"
+          <Box>
+            <Row>
+              <FrontText>닉네임</FrontText>
+              <BackText>
+                {data?.data.name}
+                <Icon src={require("../assets/icon/profile_edit/lock.png")} />
+              </BackText>
+            </Row>
+            <Row>
+              <FrontText>성별</FrontText>
+              <BackText disabled>{Genders[data?.data.gender]}</BackText>
+            </Row>
+            <Row>
+              <FrontText>생일</FrontText>
+              <BackText>{data?.data.birthday}</BackText>
+            </Row>
+            <Row>
+              <FrontText>위치</FrontText>
+              <BackText>{data?.data.location}</BackText>
+            </Row>
+          </Box>
+          <Box>
+            <Row>
+              <FrontText>키</FrontText>
+              <BackText
+                as="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setHeightModalOpen(true);
+                }}
+                placeHolder={!bodyType}
+              >
+                {height || "선택해주세요"}
+              </BackText>
+            </Row>
+            <Row>
+              <FrontText>체형</FrontText>
+              <BackText
+                as="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setBodyTypeModalOpen(true);
+                }}
+                placeHolder={!bodyType}
+              >
+                {BodyTypes[bodyType] || "선택해주세요"}
+              </BackText>
+            </Row>
+          </Box>
+          <Box>
+            <IntroductionTitle>소개</IntroductionTitle>
+            <Input
               type="text"
-              placeholder="입력해주세요"
-              value={company}
-              onChange={(e) => setCompany(e.currentTarget.value)}
+              placeholder="회원님의 매력을 간단하게 소개해주세요"
+              multiple
+              value={introduction}
+              onChange={(e) => setIntroduction(e.target.value)}
             />
-          </Row>
-          <Row>
-            <FrontText>직업</FrontText>
-            <BackText
-              as="input"
-              type="text"
-              placeholder="입력해주세요"
-              value={job}
-              onChange={(e) => setJob(e.currentTarget.value)}
-            />
-          </Row>
-          <Row>
-            <FrontText>학력</FrontText>
-            <BackText
-              as="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setEducationModalOpen(true);
-              }}
-              placeHolder={!education}
-            >
-              {Educations[education] || "선택해주세요"}
-            </BackText>
-          </Row>
-          <Row>
-            <FrontText>학교</FrontText>
-            <BackText
-              as="input"
-              type="text"
-              placeholder="입력해주세요"
-              value={school}
-              onChange={(e) => setSchool(e.currentTarget.value)}
-            />
-          </Row>
-        </Box>
-      </Wrapper>
-      <ProfileHeightModal
-        data={Array.from(
-          {
-            length:
-              data?.meta.height_range.max - data?.meta.height_range.min + 1,
-          },
-          (_, i) => data?.meta.height_range.min + i
-        )}
-        isModalOpen={heightModalOpen}
-        setHeightModalOpen={setHeightModalOpen}
-        height={height}
-        setHeight={setHeight}
-      />
-      <ProfileBodyTypeModal
-        data={data?.meta.body_types}
-        isModalOpen={bodyTypeModalOpen}
-        setBodyTypeModalOpen={setBodyTypeModalOpen}
-        bodyType={bodyType}
-        setBodyType={setBodyType}
-      />
-      <ProfileEducationModal
-        data={data?.meta.educations}
-        isModalOpen={educationModalOpen}
-        setEducationModalOpen={setEducationModalOpen}
-        education={education}
-        setEducation={setEducation}
-      />
-    </Form>
-  );
+            <GrayText>
+              SNS 아이디 등 연락처 입력 시 서비스 이용 제한됩니다
+            </GrayText>
+          </Box>
+          <Box>
+            <Row>
+              <FrontText>직장</FrontText>
+              <BackText
+                as="input"
+                type="text"
+                placeholder="입력해주세요"
+                value={company}
+                onChange={(e) => setCompany(e.currentTarget.value)}
+              />
+            </Row>
+            <Row>
+              <FrontText>직업</FrontText>
+              <BackText
+                as="input"
+                type="text"
+                placeholder="입력해주세요"
+                value={job}
+                onChange={(e) => setJob(e.currentTarget.value)}
+              />
+            </Row>
+            <Row>
+              <FrontText>학력</FrontText>
+              <BackText
+                as="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setEducationModalOpen(true);
+                }}
+                placeHolder={!education}
+              >
+                {Educations[education] || "선택해주세요"}
+              </BackText>
+            </Row>
+            <Row>
+              <FrontText>학교</FrontText>
+              <BackText
+                as="input"
+                type="text"
+                placeholder="입력해주세요"
+                value={school}
+                onChange={(e) => setSchool(e.currentTarget.value)}
+              />
+            </Row>
+          </Box>
+        </Wrapper>
+        <ProfileHeightModal
+          data={Array.from(
+            {
+              length:
+                data?.meta.height_range.max - data?.meta.height_range.min + 1,
+            },
+            (_, i) => data?.meta.height_range.min + i
+          )}
+          isModalOpen={heightModalOpen}
+          setHeightModalOpen={setHeightModalOpen}
+          height={height}
+          setHeight={setHeight}
+        />
+        <ProfileBodyTypeModal
+          data={data?.meta.body_types}
+          isModalOpen={bodyTypeModalOpen}
+          setBodyTypeModalOpen={setBodyTypeModalOpen}
+          bodyType={bodyType}
+          setBodyType={setBodyType}
+        />
+        <ProfileEducationModal
+          data={data?.meta.educations}
+          isModalOpen={educationModalOpen}
+          setEducationModalOpen={setEducationModalOpen}
+          education={education}
+          setEducation={setEducation}
+        />
+      </Form>
+    );
+  }
 };
 
 export default Profile;

@@ -110,7 +110,6 @@ const LikeText = styled(WhiteText)`
 `;
 
 const MainCard: React.FC<IProps> = ({ data, today }) => {
-  console.log(data);
   return (
     <>
       <Container>
