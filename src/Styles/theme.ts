@@ -10,6 +10,7 @@ export const theme: DefaultTheme = {
     darkGray: "#595959",
     gradientGray: "#333",
     white: "#FFF",
+    modalOverlayColor: "rgba(0, 0, 0, 0.4)",
   },
   fontSize: {
     S: "12px",

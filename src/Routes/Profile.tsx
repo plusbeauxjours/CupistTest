@@ -9,19 +9,25 @@ import {
   Educations,
   IProfileData,
 } from "../types/profileTypes";
+import ProfileHeightModal from "components/ProfileHeightModal";
+import ProfileBodyTypeModal from "components/ProfileBodyTypeModal";
+import ProfileEducationModal from "components/ProfileEducationModal";
 
 interface IProps {}
 
 interface ITheme {
+  placeHolder?: boolean;
   disabled?: boolean;
 }
 
 const Wrapper = styled.div`
   display: flex;
+  position: fixed;
   flex-direction: column;
   align-items: center;
   margin-top: 80px;
   width: 100%;
+  height: 100%;
 `;
 
 const Row = styled.div`
@@ -36,7 +42,11 @@ const Text = styled.p<ITheme>`
   font-size: ${(props) => props.theme.fontSize.L};
   font-weight: ${(props) => props.theme.fontWeight.semiBold};
   color: ${(props) =>
-    props.disabled ? props.theme.colors.black : props.theme.colors.glamBlue};
+    props.placeHolder
+      ? props.theme.colors.gray2
+      : props.disabled
+      ? props.theme.colors.black
+      : props.theme.colors.glamBlue};
 `;
 
 const FrontText = styled(Text)`
@@ -73,6 +83,9 @@ const BackText = styled(Text)`
   align-items: center;
   padding-left: 16px;
   width: 65%;
+  &::placeholder {
+    color: ${(props) => props.theme.colors.gray2};
+  }
 `;
 
 const Input = styled.input`
@@ -104,7 +117,7 @@ const Form = styled.form``;
 const Profile: React.FC<IProps> = () => {
   const [data, setData] = useState<IProfileData>(null);
   const [heightModalOpen, setHeightModalOpen] = useState<boolean>(false);
-  const [height, setHeight] = useState<string>("");
+  const [height, setHeight] = useState<number>(0);
 
   const [bodyTypeModalOpen, setBodyTypeModalOpen] = useState<boolean>(false);
   const [bodyType, setBodyType] = useState<string>("");
@@ -173,14 +186,28 @@ const Profile: React.FC<IProps> = () => {
         <Box>
           <Row>
             <FrontText>키</FrontText>
-            <BackText as="button" onClick={() => setHeightModalOpen(true)}>
-              {height}
+            <BackText
+              as="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setHeightModalOpen(true);
+              }}
+              placeHolder={!bodyType}
+            >
+              {height || "선택해주세요"}
             </BackText>
           </Row>
           <Row>
             <FrontText>체형</FrontText>
-            <BackText as="button" onClick={() => setBodyTypeModalOpen(true)}>
-              {BodyTypes[bodyType]}
+            <BackText
+              as="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setBodyTypeModalOpen(true);
+              }}
+              placeHolder={!bodyType}
+            >
+              {BodyTypes[bodyType] || "선택해주세요"}
             </BackText>
           </Row>
         </Box>
@@ -220,8 +247,15 @@ const Profile: React.FC<IProps> = () => {
           </Row>
           <Row>
             <FrontText>학력</FrontText>
-            <BackText as="button" onClick={() => setEducationModalOpen(true)}>
-              {Educations[education]}
+            <BackText
+              as="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setEducationModalOpen(true);
+              }}
+              placeHolder={!education}
+            >
+              {Educations[education] || "선택해주세요"}
             </BackText>
           </Row>
           <Row>
@@ -236,6 +270,33 @@ const Profile: React.FC<IProps> = () => {
           </Row>
         </Box>
       </Wrapper>
+      <ProfileHeightModal
+        data={Array.from(
+          {
+            length:
+              data?.meta.height_range.max - data?.meta.height_range.min + 1,
+          },
+          (_, i) => data?.meta.height_range.min + i
+        )}
+        isModalOpen={heightModalOpen}
+        setHeightModalOpen={setHeightModalOpen}
+        height={height}
+        setHeight={setHeight}
+      />
+      <ProfileBodyTypeModal
+        data={data?.meta.body_types}
+        isModalOpen={bodyTypeModalOpen}
+        setBodyTypeModalOpen={setBodyTypeModalOpen}
+        bodyType={bodyType}
+        setBodyType={setBodyType}
+      />
+      <ProfileEducationModal
+        data={data?.meta.educations}
+        isModalOpen={educationModalOpen}
+        setEducationModalOpen={setEducationModalOpen}
+        education={education}
+        setEducation={setEducation}
+      />
     </Form>
   );
 };

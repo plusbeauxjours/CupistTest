@@ -11,6 +11,7 @@ declare module "styled-components" {
       darkGray: string;
       gradientGray: string;
       white: string;
+      modalOverlayColor: string;
     };
     fontSize: {
       S: string;

@@ -13,7 +13,7 @@
     "target": "ESNext",
     "module": "CommonJS",
     "lib": ["dom", "ES6", "es2019"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     // "isolatedModules": true,
     "noEmit": true,
     "resolveJsonModule": true,

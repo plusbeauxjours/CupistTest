@@ -22,7 +22,7 @@ export interface IProfileMeta {
   genders: IGenders[];
   body_types: IBodyTypes[];
   educations: IEducations[];
-  height_range: IHeight[];
+  height_range: IHeight;
 }
 
 export interface IGenders {
