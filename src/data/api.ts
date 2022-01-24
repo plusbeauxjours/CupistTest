@@ -12,3 +12,6 @@ export const callApi = async (path: string) => {
 
   return axios.get(fullUrl, { headers });
 };
+
+export const getImage = (url: string) =>
+  `https://lili-s3-assets.s3.ap-southeast-1.amazonaws.com/cupistTest${url}`;

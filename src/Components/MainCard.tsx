@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
-import { IIntroduction } from "../types/introductionTypes";
+import { motion } from "framer-motion";
+
+import { getImage } from "data/api";
 
 interface IProps {
-  data?: any;
+  item?: any;
   today?: boolean;
+  onLiked: (id: number) => void;
+  onUnLiked: (id: number) => void;
 }
 
-const Container = styled.div`
+const Container = styled(motion.div)`
+  position: relative;
   width: 100%;
+  height: auto;
+  padding-bottom: 56.26%;
   max-width: 600px;
-  height: 140%;
   border-radius: 10px;
-  background-color: tomato;
   margin-bottom: 12px;
   overflow: hidden;
+  aspect-ratio: 10 / 14;
 `;
 
 const Img = styled.img`
+  z-index: -10;
+  position: absolute;
+  padding-top: calc(100% / 10 * 14)
+  top: 0;
+  left: 0;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  max-width: 600px;
+  object-fit: cover;
 `;
 
 const Footer = styled.div`
   display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 600px;
   flex-direction: row;
   padding: 16px;
   padding-top: 20px;
@@ -31,6 +48,10 @@ const Footer = styled.div`
 `;
 
 const Box = styled.div`
+  bottom: 80px;
+  width: 100%;
+  max-width: 600px;
+  position: absolute;
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
@@ -109,43 +130,53 @@ const LikeText = styled(WhiteText)`
   font-size: ${(props) => props.theme.fontSize.M};
 `;
 
-const MainCard: React.FC<IProps> = ({ data, today }) => {
-  return (
-    <>
-      <Container>
-        <Img src={require("../assets/icon/nav/home.png")} />
-        <Box>
-          {today && (
-            <RecommendationBox>
-              <RecommendationText>오늘의 추천</RecommendationText>
-            </RecommendationBox>
-          )}
-          <Name>
-            {data.name}, {data.age}
-            <InfoIcon src={require("../assets/icon/main/info.png")} />
-          </Name>
+const card = {
+  initial: { scale: 1, opacity: 0, x: 0 },
+  animate: { scale: 1, opacity: 1, x: 0 },
+  exit: { scale: 1.1, opacity: 0, x: window.innerWidth },
+};
 
-          {data?.introduction ? (
-            <Text>{data?.introduction}</Text>
-          ) : (
-            <>
-              <Text>
-                {data.job} ∙ {data.distance * 0.001}km
-              </Text>
-              <Tall>{data.height} cm</Tall>
-            </>
-          )}
-        </Box>
-        <Footer>
-          <UnlikeIconContainer>
-            <Icon src={require("../assets/icon/main/delete.png")} />
-          </UnlikeIconContainer>
-          <LikeIconContainer>
-            <LikeText>좋아요</LikeText>
-          </LikeIconContainer>
-        </Footer>
-      </Container>
-    </>
+const MainCard: React.FC<IProps> = ({ item, today, onLiked, onUnLiked }) => {
+  return (
+    <Container
+      variants={card}
+      layoutId={item.id + ""}
+      initial="initial"
+      animate="animate"
+      exit={"exit"}
+    >
+      <Box>
+        {today && (
+          <RecommendationBox>
+            <RecommendationText>오늘의 추천</RecommendationText>
+          </RecommendationBox>
+        )}
+        <Name>
+          {item.name}, {item.age}
+          <InfoIcon src={require("../assets/icon/main/info.png")} />
+        </Name>
+
+        {item?.introduction ? (
+          <Text>{item?.introduction}</Text>
+        ) : (
+          <>
+            <Text>
+              {item.job} ∙ {item.distance * 0.001}km
+            </Text>
+            <Tall>{item.height} cm</Tall>
+          </>
+        )}
+      </Box>
+      <Footer>
+        <UnlikeIconContainer onClick={() => onUnLiked(item.id)}>
+          <Icon src={require("../assets/icon/main/delete.png")} />
+        </UnlikeIconContainer>
+        <LikeIconContainer onClick={() => onLiked(item.id)}>
+          <LikeText>좋아요</LikeText>
+        </LikeIconContainer>
+      </Footer>
+      <Img src={getImage(item.pictures[0])} />
+    </Container>
   );
 };
 

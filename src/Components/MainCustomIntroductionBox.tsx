@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 interface IProps {
+  removedItems: number[];
   setIsIntroductionCustomDataVisible: (
     isIntroductionCustomDataVisible: boolean
   ) => void;
 }
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100%;
   max-width: 600px;
   border-radius: 10px;
@@ -85,6 +87,7 @@ const BarBtnText = styled.p`
 `;
 
 const MainCustomIntroductionBox: React.FC<IProps> = ({
+  removedItems,
   setIsIntroductionCustomDataVisible,
 }) => {
   const customArr = [
@@ -111,7 +114,7 @@ const MainCustomIntroductionBox: React.FC<IProps> = ({
   ];
 
   return (
-    <Container>
+    <Container layoutId={removedItems[0] + ""}>
       <Title>맞춤 추천</Title>
       {customArr.map((custom, index) => (
         <Row key={index}>

@@ -1,6 +1,6 @@
-import { useCallback } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
+import { AnimatePresence } from "framer-motion";
 
 import { IIntroductionData } from "types/introductionTypes";
 import MainCard from "components/MainCard";
@@ -45,19 +45,20 @@ const Main: React.FC<IProps> = () => {
     useState<IIntroductionData>(null);
   const [introductionAdditional2Data, setIntroductionAdditional2Data] =
     useState<IIntroductionData>(null);
+  const [removedItems, setRemovedItems] = useState<number[]>([]);
 
   const getData = async () => {
     try {
       setLoading(true);
       const { data: _introductionData } = await callApi("introduction");
+      setIntroductionData(_introductionData);
       const { data: _introductionCustomData } = await callApi(
         "introduction_custom"
       );
+      setIntroductionCustomData(_introductionCustomData);
       const { data: _introductionAdditionalData } = await callApi(
         "introduction_additional"
       );
-      setIntroductionData(_introductionData);
-      setIntroductionCustomData(_introductionCustomData);
       setIntroductionAdditionalData(_introductionAdditionalData);
       setHasNext(Boolean(_introductionAdditionalData.meta.next));
     } catch (e) {
@@ -84,7 +85,7 @@ const Main: React.FC<IProps> = () => {
     }
   };
 
-  const onscroll = useCallback(() => {
+  const onScroll = useCallback(() => {
     if (
       window.pageYOffset + window.innerHeight ===
         document.documentElement.scrollHeight &&
@@ -95,9 +96,19 @@ const Main: React.FC<IProps> = () => {
     }
   }, [hasNext]);
 
+  const onLiked = (id: number) => {
+    console.log("onLiked");
+    setRemovedItems((prev) => [id, ...prev]);
+  };
+
+  const onUnLiked = (id: number) => {
+    console.log("onUnLiked");
+    setRemovedItems((prev) => [id, ...prev]);
+  };
+
   useEffect(() => {
-    window.addEventListener("scroll", onscroll);
-    return () => window.removeEventListener("scroll", onscroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [hasNext]);
 
   useEffect(() => {
@@ -113,24 +124,57 @@ const Main: React.FC<IProps> = () => {
   } else {
     return (
       <Wrapper>
-        {introductionData?.data.map((item) => (
-          <MainCard key={item.id} data={item} today />
-        ))}
-        {isIntroductionCustomDataVisible &&
-          introductionCustomData?.data.map((item) => (
-            <MainCard key={item.id} data={item} today />
-          ))}
-        {introductionAdditionalData?.data.map((item) => (
-          <MainCard key={item.id} data={item} />
-        ))}
-        <CustomIntroductionBox
-          setIsIntroductionCustomDataVisible={
-            setIsIntroductionCustomDataVisible
-          }
-        />
-        {introductionAdditional2Data?.data.map((item) => (
-          <MainCard key={item.id} data={item} />
-        ))}
+        <AnimatePresence>
+          {introductionData?.data
+            .filter((i) => !removedItems.includes(i.id))
+            .map((item) => (
+              <MainCard
+                key={item.id}
+                item={item}
+                onLiked={onLiked}
+                onUnLiked={onUnLiked}
+                today
+              />
+            ))}
+          {isIntroductionCustomDataVisible &&
+            introductionCustomData?.data
+              .filter((i) => !removedItems.includes(i.id))
+              .map((item) => (
+                <MainCard
+                  key={item.id}
+                  item={item}
+                  onLiked={onLiked}
+                  onUnLiked={onUnLiked}
+                  today
+                />
+              ))}
+          {introductionAdditionalData?.data
+            .filter((i) => !removedItems.includes(i.id))
+            .map((item) => (
+              <MainCard
+                key={item.id}
+                item={item}
+                onLiked={onLiked}
+                onUnLiked={onUnLiked}
+              />
+            ))}
+          <CustomIntroductionBox
+            removedItems={removedItems}
+            setIsIntroductionCustomDataVisible={
+              setIsIntroductionCustomDataVisible
+            }
+          />
+          {introductionAdditional2Data?.data
+            .filter((i) => !removedItems.includes(i.id))
+            .map((item) => (
+              <MainCard
+                key={item.id}
+                item={item}
+                onLiked={onLiked}
+                onUnLiked={onUnLiked}
+              />
+            ))}
+        </AnimatePresence>
       </Wrapper>
     );
   }
