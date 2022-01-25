@@ -7,6 +7,7 @@ interface IMatched {
 }
 
 const Nav = styled.nav`
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
