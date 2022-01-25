@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/CupistTest/static/js/main.262221a3.js",
+    "static/media/80.png": "/CupistTest/static/media/80.d16520bd0d72e9e65065.png",
+    "static/media/82.png": "/CupistTest/static/media/82.35a77cdedc697be3f28b.png",
+    "static/media/81.png": "/CupistTest/static/media/81.88756276b78210d15a7d.png",
+    "index.html": "/CupistTest/index.html",
+    "main.262221a3.js.map": "/CupistTest/static/js/main.262221a3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.262221a3.js"
+  ]
+}
