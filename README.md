@@ -1,8 +1,7 @@
 <p align="center" >
 <img width="200" alt="스크린샷 2022-01-25 오후 6 40 201" src="https://user-images.githubusercontent.com/12480618/150971565-d49553fb-eb1f-45b8-9dab-667fedc3c4c4.png">
 <img width="200" alt="스크린샷 2022-01-25 오후 6 40 10" src="https://user-images.githubusercontent.com/12480618/150971395-75db48ee-9e92-4825-b2a0-67418ec58f63.png">
-<img width="200" alt="스크린샷 2022-01-25 오후 6 40 20" src="https://user-images.githubusercontent.c
-om/12480618/150971389-a8fbeb44-9f2f-41fc-9380-24d9a6539cfe.png">
+<img width="200" alt="스크린샷 2022-01-25 오후 6 40 20" src="https://user-images.githubusercontent.com/12480618/150971389-a8fbeb44-9f2f-41fc-9380-24d9a6539cfe.png">
 <img width="200" alt="스크린샷 2022-01-25 오후 6 40 28" src="https://user-images.githubusercontent.com/12480618/150971391-040bde1c-d776-421a-bb72-f4f31ac9f179.png">
 </p>
 
