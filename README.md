@@ -1,72 +1,46 @@
-# Getting Started with Create React App
+# 1. 코딩테스트를 시작하며
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
+<br/>
 
-## Available Scripts
+# 2. 사용모듈
 
-In the project directory, you can run:
+## 2.1. styled-components
 
-### `npm start`
+### 2.1.1 장점
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    1. 동적 스타일링이 편해졌다.
+    2. 클래스를 만들 필요가 없다.
+    3. 구조를 파악하기가 쉬워진다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2.1.2 단점
 
-### `npm test`
+    1. DOM안에서 구현된 요소를 찾기가 어렵다.
+    2. component를 만들어서 사용하기때문에 css에 익숙하면 적응하는데 시간이 걸린다.
+    3. html, css, js가 분리되지 않고 하나의 파일에서 작업해야한다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2.1.3 Link: <https://styled-components.com>
 
-### `npm run build`
+<br/>
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2.2. framer-motion
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2.2.1 장점
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    1. 에니메이션이 너무너무 쉬워졌다.
+    2. 문서가 잘되어있다.
+    3. 시간대비 좋은 퍼포먼스를 뽑을 수 있다.
 
-### `npm run eject`
+### 2.2.2 단점
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    1. 아직까지는 특별히 단점을 발견하지 못하였다.
+    2. keyframes에 익숙해졌다면 적응하려면 시간이 걸린다.
+    3. 별거아닌거도 에니메이션으로 해볼까 고민한다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2.2.3 Link: <https://www.framer.com/motion>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br/>
+<br/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# CupistTest
-# CupistTest
+# 3. 코딩테스트를 마치며
