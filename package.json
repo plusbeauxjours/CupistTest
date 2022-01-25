@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +46,6 @@
   "devDependencies": {
     "@types/react-router-dom": "5.3.3",
     "@types/styled-components": "5.1.20"
-  }
+  },
+  "homepage": "https://plusbeauxjours.github.io/CupistTest"
 }
